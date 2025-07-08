@@ -13,18 +13,18 @@
 //   do_task(10);
 // }
 
-import 'dart:convert';
-import 'dart:io';
+// import 'dart:convert';
+// import 'dart:io';
 
-import 'package:vm_service/vm_service.dart';
+// import 'package:vm_service/vm_service.dart';
 
-Stream<int> numberStream() async* {
-  for (int i = 0; i <= 5; i++) {
-    await Future.delayed(Duration(milliseconds: 1000));
-    yield i;
-  }
-  throw Exception("Ohh What Happened");
-}
+// Stream<int> numberStream() async* {
+//   for (int i = 0; i <= 5; i++) {
+//     await Future.delayed(Duration(milliseconds: 1000));
+//     yield i;
+//   }
+//   throw Exception("Ohh What Happened");
+// }
 
 // to use the await in the other style
 
@@ -81,29 +81,85 @@ Stream<int> numberStream() async* {
 
 //
 
-class x {
+// class x {
+//   String _name = "";
+//   int? age;
+//   String get y => _name;
+
+//   // x(this._name, this.age);
+//   set y(String w) {
+//     _name = w;
+//   }
+
+//   x(this._name, this.age);
+
+//   factory x.to_data(Map<String, dynamic> json) {
+//     return x(json['y'], json["age"]);
+//   }
+//   Map<String, dynamic> tojson() => {'name': _name, 'age': age};
+// }
+
+// void main() {
+//   Map<String, dynamic> user = {"y": '23CS060', "age": 19};
+//   // x y = x.to_data(user);
+//   x y = x("dhaval", 19);
+//   var data = y.tojson();
+//   print(data);
+//   print("${y.y}, ${y.age}");
+// }
+
+// new start for this
+
+// import 'dart:io';
+
+// // abstract class category {
+// //   String? cat;
+// //   void set_category();
+// // }
+
+// class student {
+//   String _name = "";
+//   String get name => _name;
+//   set name(String val) => {this._name = val};
+
+//   getname() => {print("Student name is ${name}")};
+
+// }
+
+abstract class employee {
   String _name = "";
-  int? age;
-  String get y => _name;
+  double? salary;
 
-  // x(this._name, this.age);
-  set y(String w) {
-    _name = w;
+  employee(this._name, this.salary);
+  String get name => _name;
+  set name(String val) => {if (val.isNotEmpty) _name = val};
+  void showInfo() {
+    print("Employee Name is $_name and Salary is Rs. ${salary} ");
   }
 
-  x(this._name, this.age);
+  void work();
+}
 
-  factory x.to_data(Map<String, dynamic> json) {
-    return x(json['y'], json["age"]);
+class Developer extends employee {
+  Developer(String val, double sal) : super(val, sal);
+
+  @override
+  void work() {
+    print("$name write the Flutter code");
   }
-  Map<String, dynamic> tojson() => {'name': _name, 'age': age};
+}
+
+class manager extends employee {
+  manager(String name, double val) : super(name, val);
+  @override
+  void work() {
+    print("$name manages the Team");
+  }
 }
 
 void main() {
-  Map<String, dynamic> user = {"y": '23CS060', "age": 19};
-  // x y = x.to_data(user);
-  x y = x("dhaval", 19);
-  var data = y.tojson();
-  print(data);
-  print("${y.y}, ${y.age}");
+  employee dev = new Developer('dhaval', 50000);
+  employee man = new manager('PAPA', 50000);
+
+  dev.showInfo();
 }
