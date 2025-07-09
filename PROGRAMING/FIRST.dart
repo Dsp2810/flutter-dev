@@ -126,40 +126,57 @@
 
 // }
 
-abstract class employee {
-  String _name = "";
-  double? salary;
+// abstract class employee {
+//   String _name = "";
+//   double? salary;
 
-  employee(this._name, this.salary);
-  String get name => _name;
-  set name(String val) => {if (val.isNotEmpty) _name = val};
-  void showInfo() {
-    print("Employee Name is $_name and Salary is Rs. ${salary} ");
-  }
+//   employee(this._name, this.salary);
+//   String get name => _name;
+//   set name(String val) => {if (val.isNotEmpty) _name = val};
+//   void showInfo() {
+//     print("Employee Name is $_name and Salary is Rs. ${salary} ");
+//   }
 
-  void work();
-}
+//   void work();
+// }
 
-class Developer extends employee {
-  Developer(String val, double sal) : super(val, sal);
+// class Developer extends employee {
+//   Developer(String val, double sal) : super(val, sal);
 
-  @override
-  void work() {
-    print("$name write the Flutter code");
-  }
-}
+//   @override
+//   void work() {
+//     print("$name write the Flutter code");
+//   }
+// }
 
-class manager extends employee {
-  manager(String name, double val) : super(name, val);
-  @override
-  void work() {
-    print("$name manages the Team");
-  }
-}
+// class manager extends employee {
+//   manager(String name, double val) : super(name, val);
+//   @override
+//   void work() {
+//     print("$name manages the Team");
+//   }
+// }
 
-void main() {
-  employee dev = new Developer('dhaval', 50000);
-  employee man = new manager('PAPA', 50000);
+// void main() {
+//   employee dev = new Developer('dhaval', 50000);
+//   employee man = new manager('PAPA', 50000);
 
-  dev.showInfo();
-}
+//   dev.showInfo();
+// }
+
+// ---------- Now moving to the apps ------------//
+
+/* 
+          Scaffold ---> Main Screen Layout
+          
+                                          Appbar   ---> Top bar of the app  (title/icons)
+                                          Drawer   ---> Left Side navigation
+                                          BottomNavigationBar ----> Bottons tabs
+                                          FloatingActionButtons -->  main button for quick actions
+          
+          materialApp --  its like foundation of our Flutter App -----  material's Design
+
+
+
+*/
+

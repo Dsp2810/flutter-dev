@@ -404,3 +404,103 @@
 //     }
 //   }
 
+import "package:flutter/material.dart";
+import "package:flutter/rendering.dart";
+
+void main() => (runApp(MyFirstApp()));
+
+class MyFirstApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext contex) {
+    return MaterialApp(
+      title: 'Demo app',
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext build) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'My Home',
+          style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'RobotoMono'),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple,
+        elevation: 11,
+      ),
+      // body: Center(
+      //     child: Text(
+      //   "Welcome To the My first App...",
+      //   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+      // )),
+
+      body: Container(
+        color: Colors.grey[150],
+        padding: EdgeInsets.all(16),
+        margin: EdgeInsets.only(top: 20),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Welcome to My first App',
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurpleAccent,
+                    shadows: [
+                      Shadow(
+                          blurRadius: 4,
+                          color: Colors.black38,
+                          offset: Offset(4, 4))
+                    ])),
+            SizedBox(height: 20),
+            // ClipRRect(
+            //   borderRadius: BorderRadius.circular(25),
+            //   child: Image.asset(
+            //     "assets/images/mypic.jpg",
+            //     width: 250,
+            //     height: 250,
+            //     fit: BoxFit.fill,
+            //   ),
+            // ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              elevation: 8,
+              clipBehavior: Clip.antiAlias,
+              child:Image.asset(
+                "assets/images/mypic.jpg",
+                width: 250,
+                height: 250,
+                fit:BoxFit.fill
+              )
+            ),
+            Text(
+              'CS Student & Flutter Enthusiast !',
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                        blurRadius: 4,
+                        color: Colors.greenAccent,
+                        offset: Offset(4, 4))
+                  ]),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
