@@ -503,83 +503,106 @@
 
 // now learning the other widgets like Row Column container expanded flexible sizedbos center
 
+// import 'package:flutter/material.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:url_launcher/url_launcher.dart';
+
+// void main() => runApp(Day_2_App());
+
+// class Day_2_App extends StatelessWidget {
+//   void linkedin_url() async {
+//     final url = Uri.parse("https://www.linkedin.com/in/pateldhavals-/");
+
+//     if (!await launchUrl(
+//       url,
+//       mode: LaunchMode.externalApplication,
+//     ));
+//   }
+
+//   @override
+//   Widget build(BuildContext contex) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Scaffold(
+//           appBar: AppBar(
+//             title: Text("MY profile page",
+//                 style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
+//             backgroundColor: Colors.greenAccent,
+//           ),
+//           backgroundColor: Colors.grey[100],
+//           body: Container(
+//             color: Colors.grey[250],
+//             padding: EdgeInsets.all(50),
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: [
+//                 CircleAvatar(
+//                   radius: 75,
+//                   backgroundImage: AssetImage("assets//images//me.jpg"),
+//                 ),
+//                 SizedBox(height: 20),
+//                 Text(
+//                   "Dhaval s patel",
+//                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+//                 ),
+//                 Text(
+//                   "Flutter Developer & CS Student",
+//                   style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+//                 ),
+//                 SizedBox(height: 20),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     ElevatedButton.icon(
+//                         onPressed: () => print("call Cliked"),
+//                         label: Text("Call"),
+//                         icon: Icon(Icons.phone)),
+//                     SizedBox(width: 25, height: 25),
+//                     ElevatedButton.icon(
+//                         onPressed: () => print("Email clicked"),
+//                         label: Text("Email"),
+//                         icon: Icon(Icons.email_outlined)),
+//                     SizedBox(width: 25, height: 25),
+//                     ElevatedButton.icon(
+//                         onPressed: () => linkedin_url(),
+//                         label: Text("LinkedIn"),
+//                         icon: Icon(FontAwesomeIcons.linkedin)),
+//                     SizedBox(width: 25, height: 25),
+//                     ElevatedButton.icon(
+//                         onPressed: () => print("Github clicked"),
+//                         label: Text("Email"),
+//                         icon: Icon(FontAwesomeIcons.github)),
+//                   ],
+//                 ),
+//                 Expanded(child: Container()),
+//                 Text("© 2025 Dhaval Inc.",
+//                     style: TextStyle(color: Colors.grey[750]))
+//               ],
+//             ),
+//           )),
+//     );
+//   }
+// }
+
+// new learning
+
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+import './pages/home_page.dart';
 
-void main() => runApp(Day_2_App());
+void main() => runApp(MyMultiApp());
 
-class Day_2_App extends StatelessWidget {
-  void linkedin_url() async {
-    final url = Uri.parse("https://www.linkedin.com/in/pateldhavals-/");
-
-    if (!await launchUrl(
-      url,
-      mode: LaunchMode.externalApplication,
-    ));
-  }
-
+class MyMultiApp extends StatelessWidget {
   @override
-  Widget build(BuildContext contex) {
+  Widget build(BuildContext context) {
+    // TODO: implement build
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text("MY profile page",
-                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold)),
-            backgroundColor: Colors.greenAccent,
-          ),
-          backgroundColor: Colors.grey[100],
-          body: Container(
-            color: Colors.grey[250],
-            padding: EdgeInsets.all(50),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 75,
-                  backgroundImage: AssetImage("assets//images//me.jpg"),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  "Dhaval s patel",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "Flutter Developer & CS Student",
-                  style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton.icon(
-                        onPressed: () => print("call Cliked"),
-                        label: Text("Call"),
-                        icon: Icon(Icons.phone)),
-                    SizedBox(width: 25, height: 25),
-                    ElevatedButton.icon(
-                        onPressed: () => print("Email clicked"),
-                        label: Text("Email"),
-                        icon: Icon(Icons.email_outlined)),
-                    SizedBox(width: 25, height: 25),
-                    ElevatedButton.icon(
-                        onPressed: () => linkedin_url(),
-                        label: Text("LinkedIn"),
-                        icon: Icon(FontAwesomeIcons.linkedin)),
-                    SizedBox(width: 25, height: 25),
-                    ElevatedButton.icon(
-                        onPressed: () => print("Github clicked"),
-                        label: Text("Email"),
-                        icon: Icon(FontAwesomeIcons.github)),
-                  ],
-                ),
-                Expanded(child: Container()),
-                Text("© 2025 Dhaval Inc.",
-                    style: TextStyle(color: Colors.grey[750]))
-              ],
-            ),
-          )),
+      title: "My first multi paged app",
+      theme: ThemeData(primarySwatch: Colors.blueGrey),
+      home: Homepage(),
     );
+    // throw UnimplementedError();
   }
+
 }
+
