@@ -2,11 +2,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/items.dart';
 
-const String baseUrl = 'http://localhost:3000/items'; // change if hosted
+const String baseUrl = 'http://localhost:5000/items'; // change if hosted
 
 class ApiService {
   static Future<List<Item>> getItems() async {
     final response = await http.get(Uri.parse(baseUrl));
+    print("Resopnse status: ${response.statusCode}");
+    print("Resopnse body: ${response.body}");
     if (response.statusCode == 200) {
       final List data = jsonDecode(response.body);
       return data.map((e) => Item.fromJson(e)).toList();
@@ -16,9 +18,10 @@ class ApiService {
   }
 
   static Future<void> addItem(Item item) async {
-    await http.post(Uri.parse(baseUrl),
+    await http.post(
+      Uri.parse(baseUrl),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(item.toJson())
+      body: jsonEncode(item.toJson()),
     );
   }
 
@@ -27,9 +30,10 @@ class ApiService {
   }
 
   static Future<void> updateItem(String id, Item item) async {
-    await http.put(Uri.parse('$baseUrl/$id'),
+    await http.put(
+      Uri.parse('$baseUrl/$id'),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(item.toJson())
+      body: jsonEncode(item.toJson()),
     );
   }
 }

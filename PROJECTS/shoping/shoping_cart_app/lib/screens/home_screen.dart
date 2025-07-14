@@ -53,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   isThreeLine: true,
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
                         icon: const Icon(Icons.edit),
@@ -70,6 +71,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         icon: const Icon(Icons.delete),
                         onPressed: () async {
                           await ApiService.deleteItem(item.id);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Item has been Deleted !!"),
+                              backgroundColor: Colors.redAccent,
+                            ),
+                          );
                           _refresh();
                         },
                       ),
@@ -81,14 +88,89 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await Navigator.push(context,
-              MaterialPageRoute(builder: (_) => const AddItemScreen()));
-          _refresh();
-        },
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: Row(
+      //   mainAxisAlignment: MainAxisAlignment.end, // aligns to the right
+      //   mainAxisSize: MainAxisSize.min,
+      //   children: [
+      //     FloatingActionButton(
+      //       heroTag: "btn1",
+      //       onPressed: () {
+      //         print("Add");
+      //       },
+      //       child: const Icon(Icons.add),
+      //       tooltip: "Add Item",
+      //     ),
+      //     const SizedBox(width: 10),
+      //     FloatingActionButton(
+      //       heroTag: "btn2",
+      //       onPressed: () {
+      //         print("Refresh");
+      //       },
+      //       child: const Icon(Icons.refresh),
+      //       tooltip: "Refresh",
+      //     ),
+      //     const SizedBox(width: 10),
+      //     FloatingActionButton(
+      //       heroTag: "btn3",
+      //       onPressed: () {
+      //         print("Search");
+      //       },
+      //       child: const Icon(Icons.search),
+      //       tooltip: "Search",
+      //     ),
+      //   ],
+      // ),
+      // -----
+      floatingActionButton: Column(
+  mainAxisSize: MainAxisSize.min,
+  crossAxisAlignment: CrossAxisAlignment.end,
+  children: [
+    FloatingActionButton(
+      heroTag: "btn1",
+      onPressed: () {
+        // Add Item
+        Navigator.push(context, MaterialPageRoute(builder: (_) => const AddItemScreen()));
+      },
+      child: const Icon(Icons.add),
+      tooltip: "Add Item",
+    ),
+    const SizedBox(height: 12),
+    FloatingActionButton(
+      heroTag: "btn2",
+      onPressed: () {
+        // Example action: sort or refresh
+        _refresh();
+      },
+      child: const Icon(Icons.refresh),
+      tooltip: "Refresh",
+    ),
+    const SizedBox(height: 12),
+    FloatingActionButton(
+      heroTag: "btn3",
+      onPressed: () {
+        // Example: Search or filter
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Search not implemented")),
+        );
+      },
+      child: const Icon(Icons.search),
+      tooltip: "Search",
+    ),
+  ],
+),
+
+// ---
+
+      // FloatingActionButton(
+      //   onPressed: () async {
+      //     await Navigator.push(
+      //       context,
+      //       MaterialPageRoute(builder: (_) => const AddItemScreen()),
+      //     );
+      //     _refresh();
+      //   },
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 }

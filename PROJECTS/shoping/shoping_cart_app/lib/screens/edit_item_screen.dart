@@ -17,14 +17,33 @@ class _EditItemScreenState extends State<EditItemScreen> {
   late String _selectedCategory;
 
   final List<String> _categories = ['Shirts', 'Pants', 'T-Shirts', 'Others'];
+  int total_price = 0;
 
   @override
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.item.name);
-    _quantityController = TextEditingController(text: widget.item.quantity.toString());
-    _priceController = TextEditingController(text: widget.item.price.toString());
+    _quantityController = TextEditingController(
+      text: widget.item.quantity.toString(),
+    );
+    _priceController = TextEditingController(
+      text: widget.item.price.toString(),
+    );
     _selectedCategory = widget.item.category;
+    if (!_categories.contains(_selectedCategory)) {
+      _categories.add(_selectedCategory);
+    }
+    _calculate_total();
+    _quantityController.addListener(_calculate_total);
+    _priceController.addListener(_calculate_total);
+  }
+
+  void _calculate_total() {
+    final qty = int.tryParse(_quantityController.text.trim()) ?? 0;
+    final prc = int.tryParse(_priceController.text.trim()) ?? 0;
+    setState(() {
+      total_price = qty * prc;
+    });
   }
 
   void _submit() async {
@@ -33,9 +52,9 @@ class _EditItemScreenState extends State<EditItemScreen> {
     final price = int.tryParse(_priceController.text.trim());
 
     if (name.isEmpty || quantity == null || price == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("❗ Enter valid data")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("❗ Enter valid data")));
       return;
     }
 
@@ -48,6 +67,12 @@ class _EditItemScreenState extends State<EditItemScreen> {
     );
 
     await ApiService.updateItem(widget.item.id, updatedItem);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Data Has been update !!"),
+        backgroundColor: Colors.indigo,
+      ),
+    );
     Navigator.pop(context);
   }
 
@@ -84,7 +109,10 @@ class _EditItemScreenState extends State<EditItemScreen> {
               onChanged: (value) => setState(() => _selectedCategory = value!),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(onPressed: _submit, child: const Text("Update Item"))
+            ElevatedButton(
+              onPressed: _submit,
+              child: const Text("Update Item"),
+            ),
           ],
         ),
       ),

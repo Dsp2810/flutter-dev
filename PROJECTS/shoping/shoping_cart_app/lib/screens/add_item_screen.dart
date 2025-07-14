@@ -22,9 +22,9 @@ class _AddItemScreenState extends State<AddItemScreen> {
     final price = int.tryParse(_priceController.text.trim());
 
     if (name.isEmpty || quantity == null || price == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("❗ Enter valid data")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("❗ Enter valid data")));
       return;
     }
 
@@ -38,6 +38,12 @@ class _AddItemScreenState extends State<AddItemScreen> {
 
     await ApiService.addItem(newItem);
     Navigator.pop(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Data has been Added !!"),
+        backgroundColor: Colors.blueAccent,
+      ),
+    );
   }
 
   @override
@@ -73,7 +79,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
               onChanged: (value) => setState(() => _selectedCategory = value!),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(onPressed: _submit, child: const Text("Add Item"))
+            ElevatedButton(onPressed: _submit, child: const Text("Add Item")),
           ],
         ),
       ),
