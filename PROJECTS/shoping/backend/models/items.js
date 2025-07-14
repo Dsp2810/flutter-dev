@@ -3,7 +3,9 @@ const ItemSchema = new mongoose.Schema(
     {
         name: String,
         category: String,
-        Quantity: Number
+        quantity: Number,
+        price: Number
     }
 )
-module.exports = mongoose.model('Item',ItemSchema)
+module.exports = mongoose.model('cart', ItemSchema,'cart')
+// here we have to use the collecction name...
