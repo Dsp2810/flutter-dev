@@ -271,7 +271,11 @@ void main() => runApp(Myapp());
 class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext contex) {
-    return MaterialApp(title: "StateFull App", home: Counterpage(),debugShowCheckedModeBanner: false,);
+    return MaterialApp(
+      title: "StateFull App",
+      home: Counterpage(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
 
@@ -298,17 +302,26 @@ class _counterpagestate extends State<Counterpage> {
             fontStyle: FontStyle.italic,
             fontWeight: FontWeight.bold,
             color: Colors.pinkAccent,
-
           ),
         ),
         backgroundColor: Colors.black,
         centerTitle: true,
       ),
-      body: Center(child: Text("Count :$cnt", style: TextStyle(fontSize: 24))),
-      floatingActionButton: FloatingActionButton(
-        onPressed: increment,
-        child: Icon(Icons.add),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text("Count :$cnt", style: TextStyle(fontSize: 24)),
+          ElevatedButton(onPressed: increment, child: Text("increment")),
+        ],
       ),
+
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: increment,
+      //   // child: Icon(Icons.add),
+      //   child: Text("Increment the value", style: TextStyle(fontSize: 15)),
+      // ),
     );
   }
 }
