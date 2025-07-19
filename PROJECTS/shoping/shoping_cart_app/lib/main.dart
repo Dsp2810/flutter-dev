@@ -264,64 +264,241 @@
 //   }
 // }
 
+// import 'package:flutter/material.dart';
+
+// void main() => runApp(Myapp());
+
+// class Myapp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext contex) {
+//     return MaterialApp(
+//       title: "StateFull App",
+//       home: Counterpage(),
+//       debugShowCheckedModeBanner: false,
+//     );
+//   }
+// }
+
+// class Counterpage extends StatefulWidget {
+//   @override
+//   _counterpagestate createState() => _counterpagestate();
+// }
+
+// class _counterpagestate extends State<Counterpage> {
+//   int cnt = 0;
+//   void increment() {
+//     setState(() {
+//       cnt++;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext contex) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(
+//           "Counter App",
+//           style: TextStyle(
+//             fontStyle: FontStyle.italic,
+//             fontWeight: FontWeight.bold,
+//             color: Colors.pinkAccent,
+//           ),
+//         ),
+//         backgroundColor: Colors.black,
+//         centerTitle: true,
+//       ),
+//       body: Center(
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//           // crossAxisAlignment: CrossAxisAlignment.end,
+//           // crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             Text("Count :$cnt", style: TextStyle(fontSize: 24)),
+//             ElevatedButton(onPressed: increment, child: Text("increment")),
+//           ],
+//         ),
+//       ),
+
+//       // floatingActionButton: FloatingActionButton(
+//       //   onPressed: increment,
+//       //   // child: Icon(Icons.add),
+//       //   child: Text("Increment the value", style: TextStyle(fontSize: 15)),
+//       // ),
+//     );
+//   }
+// }
+
+// import 'dart:async';
+
+// import 'package:flutter/material.dart';
+
+// void main() => runApp(Myapp());
+
+// class Myapp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     // TODO: implement build
+//     return MaterialApp(
+//       title: "Here the app",
+//       debugShowCheckedModeBanner: false,
+//       home: csclass(),
+//     );
+//   }
+// }
+
+// class csclass extends StatefulWidget {
+//   const csclass({super.key});
+
+//   @override
+//   _counterScreen createState() => _counterScreen();
+// }
+
+// class _counterScreen extends State<csclass> {
+//   // int cnt = 0;
+//   // Timer? _timer;
+//   // @override
+//   // void initState() {
+//   //   super.initState();
+//   //   print("Initiated State");
+//   //   _timer = Timer.periodic(Duration(seconds: 10), (timer) {
+//   //     setState(() {
+//   //       cnt++;
+//   //     });
+//   //   });
+//   // }
+//   bool ison = false;
+
+//   @override
+//   Widget build(BuildContext contex) {
+//     // return
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(
+//           "Here is the Stateful widget",
+//           style: TextStyle(
+//             fontSize: 25,
+//             fontStyle: FontStyle.italic,
+//             fontWeight: FontWeight.bold,
+//             color: Colors.black,
+//           ),
+//         ),
+//       ),
+//       body: Center(
+//         child: Switch(
+//           value: ison,
+//           activeColor: Colors.redAccent,
+//           inactiveThumbColor: Colors.greenAccent,
+//           inactiveTrackColor: Colors.pinkAccent,
+//           onChanged: (value) {
+//             setState(() {
+//               ison = value;
+//             });
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
+//     //     centerTitle: true,
+//     //     backgroundColor: Colors.purple,
+//     //   ),
+//     //   body: Center(child: Text("Count $cnt", style: TextStyle(fontSize: 30))),
+//     //   floatingActionButton: FloatingActionButton(
+//     //     onPressed: () {
+//     //       setState(() {
+//     //         cnt++;
+//     //       });
+//     //     },
+//     //     child: Icon(Icons.add),
+//     //   ),
+//     // );
+
+//   // @override
+//   // void dispose() {
+//   //   print("Dispose is called");
+//   //   _timer?.cancel();
+//   //   super.dispose();
+//   // }
+
+// now making the toDo app using the AnimatedList
+
 import 'package:flutter/material.dart';
 
-void main() => runApp(Myapp());
+void main() => runApp(x());
 
-class Myapp extends StatelessWidget {
+class x extends StatelessWidget {
   @override
-  Widget build(BuildContext contex) {
+  Widget build(BuildContext context) {
+    // TODO: implement build
     return MaterialApp(
-      title: "StateFull App",
-      home: Counterpage(),
+      title: "The To do app",
       debugShowCheckedModeBanner: false,
+      home: TodoApp(),
     );
   }
 }
 
-class Counterpage extends StatefulWidget {
+class TodoApp extends StatefulWidget {
   @override
-  _counterpagestate createState() => _counterpagestate();
+  _TodoAppState createState() => _TodoAppState();
 }
 
-class _counterpagestate extends State<Counterpage> {
-  int cnt = 0;
-  void increment() {
+class _TodoAppState extends State<TodoApp> {
+  final List<String> _todos = [];
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _addTodo() {
     setState(() {
-      cnt++;
+      _todos.add(_controller.text);
+      _controller.clear();
+    });
+  }
+
+  void _removeTodo(int index) {
+    setState(() {
+      _todos.removeAt(index);
     });
   }
 
   @override
-  Widget build(BuildContext contex) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Counter App",
-          style: TextStyle(
-            fontStyle: FontStyle.italic,
-            fontWeight: FontWeight.bold,
-            color: Colors.pinkAccent,
-          ),
-        ),
-        backgroundColor: Colors.black,
-        centerTitle: true,
-      ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        // crossAxisAlignment: CrossAxisAlignment.center,
+      appBar: AppBar(title: Text("To-Do List")),
+      body: Column(
         children: [
-          Text("Count :$cnt", style: TextStyle(fontSize: 24)),
-          ElevatedButton(onPressed: increment, child: Text("increment")),
+          TextField(controller: _controller),
+          SizedBox(height: 15),
+          ElevatedButton(onPressed: _addTodo, child: Text("Add")),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _todos.length,
+              itemBuilder: (context, index) => ListTile(
+                // leading: Text("$index .", style: TextStyle()),
+                title: Row(
+                  children: [
+                    Text(
+                      "${index+1}. ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 5),
+                    Expanded(child: Text(_todos[index])),
+                  ],
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () => _removeTodo(index),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
-
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: increment,
-      //   // child: Icon(Icons.add),
-      //   child: Text("Increment the value", style: TextStyle(fontSize: 15)),
-      // ),
     );
   }
 }
