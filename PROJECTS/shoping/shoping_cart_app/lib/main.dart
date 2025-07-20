@@ -422,82 +422,214 @@
 
 // now making the toDo app using the AnimatedList
 
+// import 'package:flutter/material.dart';
+
+// void main() => runApp(x());
+
+// class x extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     // TODO: implement build
+//     return MaterialApp(
+//       title: "The To do app",
+//       debugShowCheckedModeBanner: false,
+//       home: TodoApp(),
+//     );
+//   }
+// }
+
+// class TodoApp extends StatefulWidget {
+//   @override
+//   _TodoAppState createState() => _TodoAppState();
+// }
+
+// class _TodoAppState extends State<TodoApp> {
+//   final List<String> _todos = [];
+//   final TextEditingController _controller = TextEditingController();
+
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
+
+//   void _addTodo() {
+//     setState(() {
+//       _todos.add(_controller.text);
+//       _controller.clear();
+//     });
+//   }
+
+//   void _removeTodo(int index) {
+//     setState(() {
+//       _todos.removeAt(index);
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: Text("To-Do List")),
+//       body: Column(
+//         children: [
+//           TextField(controller: _controller),
+//           SizedBox(height: 15),
+//           ElevatedButton(onPressed: _addTodo, child: Text("Add")),
+//           Expanded(
+//             child: ListView.builder(
+//               itemCount: _todos.length,
+//               itemBuilder: (context, index) => ListTile(
+//                 // leading: Text("$index .", style: TextStyle()),
+//                 title: Row(
+//                   children: [
+//                     Text(
+//                       "${index+1}. ",
+//                       style: TextStyle(fontWeight: FontWeight.bold),
+//                     ),
+//                     SizedBox(width: 5),
+//                     Expanded(child: Text(_todos[index])),
+//                   ],
+//                 ),
+//                 trailing: IconButton(
+//                   icon: Icon(Icons.delete),
+//                   onPressed: () => _removeTodo(index),
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+// import 'package:flutter/material.dart';
+
+// void main() => runApp(MyApp());
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: ProfileScreen(),
+//       debugShowCheckedModeBanner: false,
+//     );
+//   }
+// }
+
+// class ProfileScreen extends StatefulWidget {
+//   @override
+//   _ProfileScreenState createState() => _ProfileScreenState();
+// }
+
+// class _ProfileScreenState extends State<ProfileScreen> {
+//   String name = "Dhaval S Patel";
+//   String bio = "Flutter Developer | Loves UI Design";
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 60),
+//           child: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               CircleAvatar(
+//                 radius: 60,
+//                 backgroundImage: AssetImage("assets/me.jpg"),
+//               ),
+//               SizedBox(height: 28),
+//               Text(
+//                 name,
+//                 style: TextStyle(fontSize: 24, color: Colors.black),
+//               ),
+//               SizedBox(height: 19),
+//               Text(
+//                 bio,
+//                 style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+//                 textAlign: TextAlign.center,
+//               ),
+//               SizedBox(height: 45),
+//               ElevatedButton(
+//                 onPressed: () {
+//                   print("Edit Button Clicked");
+//                 },
+//                 child: Text("Edit"),
+//                 style: ElevatedButton.styleFrom(
+//                   backgroundColor:Colors.greenAccent,
+//                   foregroundColor: Colors.black,
+//                   padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(16),
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// now creating the app for the product management..
+
 import 'package:flutter/material.dart';
+import './models/product.dart';
+import './widgets/product_card.dart';
 
-void main() => runApp(x());
+void main() => runApp(MyApp());
 
-class x extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
+  Widget build(BuildContext contex) {
     return MaterialApp(
-      title: "The To do app",
+      title: "Product App",
       debugShowCheckedModeBanner: false,
-      home: TodoApp(),
+      home: productList(),
     );
   }
 }
 
-class TodoApp extends StatefulWidget {
+class productList extends StatefulWidget {
   @override
-  _TodoAppState createState() => _TodoAppState();
+  productList_state createState() => productList_state();
 }
 
-class _TodoAppState extends State<TodoApp> {
-  final List<String> _todos = [];
-  final TextEditingController _controller = TextEditingController();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _addTodo() {
+class productList_state extends State<productList> {
+  List<Product> products = [
+    Product(
+      name: "iPhone 15 Pro",
+      imgUrl:
+          "https://cdn.jiostore.online/v2/jmd-asp/jdprod/wrkr/products/pictures/item/free/original/PX0gSKTmub-apple-iphone-15-128gb-yellow-493839311-i-1-1200wx1200h.jpeg",
+    ),
+    Product(
+      name: "MacBook M2",
+      imgUrl:
+          "https://i.insider.com/632c66b0f576c60018fc3421?width=2000&format=jpeg&auto=webp",
+    ),
+    Product(
+      name: "Apple Watch Ultra",
+      imgUrl:
+          "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MYPD3ref_VW_34FR+watch-case-49-titanium-black-ultra2_VW_34FR+watch-face-49-ocean-ultra2_VW_34FR_GEO_IN?wid=5120&hei=3280&bgc=fafafa&trim=1&fmt=p-jpg&qlt=80&.v=VEREVGFsQzRDQXZXemdUckh4dmo3M2pDV2hhem5qNnpDenFtKzI1OXdzWjRaeVR4RW9XWXhWVHRHeXZEa3AwcGZsNDErT2hQbWVmS0VCWlVweVY1UHBiVmVXUVJPYnV1S0FZc3FMLzd3SDRnWGJhejlLNXhYODlVTzA3R2NWaFBKVlBQa05Uc00ycDBPRHh5bVJ3cUgwSzgySUpseHY2YmYwNVhHWVk4TmZ0QUM0VzY0ZFZ0S21LTGc3Snk3TVBjOWE5RkJ2dEY1c1pRZkdGUUtnZHBSWnhPS2tpZ2Y2b3RwaGxjbko0ZVl0RQ",
+    ),
+  ];
+  void toglleFav(int indx) {
     setState(() {
-      _todos.add(_controller.text);
-      _controller.clear();
+      products[indx].isFav = !products[indx].isFav;
     });
   }
 
-  void _removeTodo(int index) {
-    setState(() {
-      _todos.removeAt(index);
-    });
-  }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext contex) {
     return Scaffold(
-      appBar: AppBar(title: Text("To-Do List")),
-      body: Column(
-        children: [
-          TextField(controller: _controller),
-          SizedBox(height: 15),
-          ElevatedButton(onPressed: _addTodo, child: Text("Add")),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _todos.length,
-              itemBuilder: (context, index) => ListTile(
-                // leading: Text("$index .", style: TextStyle()),
-                title: Row(
-                  children: [
-                    Text(
-                      "${index+1}. ",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: 5),
-                    Expanded(child: Text(_todos[index])),
-                  ],
-                ),
-                trailing: IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () => _removeTodo(index),
-                ),
-              ),
-            ),
-          ),
-        ],
+      appBar: AppBar(title: Text("Product List"), centerTitle: true),
+      body: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (context, index) =>ProductCard(
+          product_ :products[index],
+          onFavtoggle:()=>toglleFav(index), 
+        ) ,
       ),
     );
   }
